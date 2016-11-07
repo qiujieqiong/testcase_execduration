@@ -91,7 +91,7 @@ def reportToTestlink(case_id, case_status, exectime, platform_id):
     # args["buildname"] = BUILDNAME
     args["buildid"] = BUILDID
     args["status"] = case_status
-    args["execduration"] = exectime
+    args["execution_duration"] = exectime
     result = client.reportToTestlink(args)
     print(result)
 
@@ -132,6 +132,6 @@ try:
         else:
             tc_result = 'Fail'
 
-        reportToTestlink(int(tc_id), tc_result[0].lower(), int(tc_exec_time), platform_desktop_id)
+        reportToTestlink(int(tc_id), tc_result[0].lower(), float(tc_exec_time), platform_desktop_id)
 finally:
     ffile.close()
