@@ -62,9 +62,9 @@ class TestlinkAPIClient:
         dictargs["devKey"] = self.devKey
         return self.server.tl.addTestCaseToTestPlan(dictargs)
 
-    def reportToTestlink(self, dictargs):
+    def reportToTestlink(self, dictargs, customfields):
         dictargs["devKey"] = self.devKey
-        return self.server.tl.reportTCResult(dictargs, customfields={})
+        return self.server.tl.reportTCResult(dictargs, customfields)
 
 # substitute your Dev Key Here
 client = TestlinkAPIClient(TESTLINKAPIKEY)
