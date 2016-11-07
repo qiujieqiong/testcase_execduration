@@ -132,6 +132,6 @@ try:
         else:
             tc_result = 'Fail'
 
-        reportToTestlink(int(tc_id), tc_result[0].lower(), float(tc_exec_time), platform_desktop_id)
+        reportToTestlink(int(tc_id), tc_result[0].lower(), int(tc_exec_time), platform_desktop_id)
 finally:
     ffile.close()
