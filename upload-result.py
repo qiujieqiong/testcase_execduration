@@ -62,9 +62,9 @@ class TestlinkAPIClient:
         dictargs["devKey"] = self.devKey
         return self.server.tl.addTestCaseToTestPlan(dictargs)
 
-    def reportToTestlink(self, dictargs, customfields):
+    def reportToTestlink(self, dictargs):
         dictargs["devKey"] = self.devKey
-        return self.server.tl.reportTCResult(dictargs, customfields)
+        return self.server.tl.reportTCResult(dictargs)
 
 # substitute your Dev Key Here
 client = TestlinkAPIClient(TESTLINKAPIKEY)
@@ -84,7 +84,7 @@ def getAllTestCaseID():
 
 def reportToTestlink(case_id, case_status, exectime, platform_id):
     args = {}
-    customfields = {}
+    kwargs = {}
     args["testplanid"] = TESTPLANID
     args["testcaseid"] = case_id
     # args["platformid"] = platform_id
@@ -92,9 +92,10 @@ def reportToTestlink(case_id, case_status, exectime, platform_id):
     # args["buildname"] = BUILDNAME
     args["buildid"] = BUILDID
     args["status"] = case_status
-    customfields['CF_EXEC_TIME'] = exectime
-    result = client.reportToTestlink(args, customfields)
+    args["execduration"] = exectime
+    result = client.reportToTestlink(args)
     print(result)
+
 
 rr_token = os.getenv("RR_TOKEN") or None
 headers = {"Access-Token": rr_token}
